@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 
 @Configuration
 @ComponentScan(basePackageClasses = Base.class,
-    excludeFilters = { @ComponentScan.Filter(Controller.class)})
+    excludeFilters = {@ComponentScan.Filter(Controller.class)})
 public class RootConfig {
     @Bean
     public UserRepository userRepository() {
@@ -19,5 +19,4 @@ public class RootConfig {
 
         return userRepository;
     }
-
 }
