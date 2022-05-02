@@ -38,5 +38,4 @@ public class FilterInitializer implements WebApplicationInitializer {
     private EnumSet<DispatcherType> getSecurityDispatcherTypes() {
         return EnumSet.of(DispatcherType.REQUEST, DispatcherType.ERROR, DispatcherType.ASYNC);
     }
-
 }
