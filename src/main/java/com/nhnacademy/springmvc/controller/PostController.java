@@ -1,9 +1,11 @@
 package com.nhnacademy.springmvc.controller;
 
 import com.nhnacademy.springmvc.domain.Post;
+import com.nhnacademy.springmvc.exception.PostNotFoundException;
 import com.nhnacademy.springmvc.repository.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,5 +37,10 @@ public class PostController {
     public String postModifyForm(@ModelAttribute("post") Post post, Model model) {
         model.addAttribute("post", post);
         return "postModify";
+    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public String handleException(Model model, PostNotFoundException exc) {
+        return null;
     }
 }

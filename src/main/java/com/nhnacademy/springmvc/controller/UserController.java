@@ -5,12 +5,11 @@ import com.nhnacademy.springmvc.exception.UserNotFoundException;
 import com.nhnacademy.springmvc.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/user/{userId}")
@@ -32,10 +31,10 @@ public class UserController {
                               @ModelAttribute("user") User user,
                               Model model) {
         // User user = userRepository.getUser(userId);
-        if (Objects.isNull(user)) {
-            model.addAttribute("exception", new UserNotFoundException());
-            return "error";
-        }
+        // if (Objects.isNull(user)) {
+        //     model.addAttribute("exception", new UserNotFoundException());
+        //     return "error";
+        // }
 
         model.addAttribute("user", user);
         return "userInfo";
@@ -47,12 +46,18 @@ public class UserController {
                                  @ModelAttribute("user") User user,
                                  Model model) {
         // User user = userRepository.getUser(userId);
-        if (Objects.isNull(user)) {
-            model.addAttribute("exception", new UserNotFoundException());
-            return "error";
-        }
+        // if (Objects.isNull(user)) {
+        //     model.addAttribute("exception", new UserNotFoundException());
+        //     return "error";
+        // }
 
         model.addAttribute("user", user);
         return "userModify";
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public String handleException(Model model, UserNotFoundException exc) {
+        model.addAttribute("exception", exc);
+        return "error";
     }
 }
