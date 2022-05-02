@@ -2,8 +2,11 @@ package com.nhnacademy.springmvc.controller;
 
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.domain.UserRegisterRequest;
+import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.UserRepository;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +28,13 @@ public class UserRegisterController {
     }
 
     @PostMapping
-    public ModelAndView registerUser(@ModelAttribute UserRegisterRequest userRequest) {
+    public ModelAndView registerUser(@Valid @ModelAttribute UserRegisterRequest userRequest,
+                                     BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationFailedException(bindingResult);
+        }
+
         // TODO #9: 이름 추가
         User user = userRepository.addUser(userRequest.getId(), userRequest.getPassword(),
                 userRequest.getAge(), userRequest.getName());
