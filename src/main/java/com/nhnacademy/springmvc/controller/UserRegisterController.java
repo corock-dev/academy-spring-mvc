@@ -27,7 +27,7 @@ public class UserRegisterController {
 
     // TODO #4: 사용자 등록 처리
     @PostMapping
-    public ModelAndView registerUser(@ModelAttribute UserRegisterRequest userRequest) {
+    public ModelAndView registerUser(/* @ModelAttribute */ UserRegisterRequest userRequest) {
         User user = userRepository.addUser(userRequest.getId(), userRequest.getPassword(), userRequest.getAge());
 
         ModelAndView mav = new ModelAndView("userInfo");

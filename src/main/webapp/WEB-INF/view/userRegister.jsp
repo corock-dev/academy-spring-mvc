@@ -6,7 +6,7 @@
     <title>사용자 등록</title>
 </head>
 <body>
-    <form method="post" action="/user/register">
+    <form method="post" action="/user/register" enctype="application/x-www-form-urlencoded">
         아이디: <input type="text" name="id" /><br />
         비밀번호: <input type="password" name="password" /><br />
         나이: <input type="text" name="age" /><br />
