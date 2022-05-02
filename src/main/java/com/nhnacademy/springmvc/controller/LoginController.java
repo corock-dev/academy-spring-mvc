@@ -27,7 +27,9 @@ public class LoginController {
     //          `SESSION` 이라는 쿠키가 있으면 로그인 완료 메세지 출력 (`loginSuccess.jsp`).
     //          `SESSION` 이라는 쿠키가 없으면 로그인 폼 화면 출력 (`loginForm.jsp`).
     @GetMapping("/login")
-    public String login(@CookieValue(name = "SESSION", required = false) String sessionCookie, Model model) {
+    public String loginForm(@CookieValue(name = "SESSION", required = false) String sessionCookie,
+                        Model model) {
+
         if (isNull(sessionCookie)) {
             model.addAttribute("id", sessionCookie);
 
