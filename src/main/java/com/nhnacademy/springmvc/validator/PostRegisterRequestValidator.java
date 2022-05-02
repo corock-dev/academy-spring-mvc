@@ -14,6 +14,7 @@ public class PostRegisterRequestValidator implements Validator {
         return PostRegisterRequest.class.equals(clazz);
     }
 
+    // title=foo&content=bar
     @Override
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "", "title is empty");
