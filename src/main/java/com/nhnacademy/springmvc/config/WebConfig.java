@@ -1,6 +1,7 @@
 package com.nhnacademy.springmvc.config;
 
 import com.nhnacademy.springmvc.controller.ControllerBase;
+import com.nhnacademy.springmvc.interceptor.MeasuringInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +10,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-
-import java.util.Locale;
 
 @EnableWebMvc
 @Configuration
@@ -26,7 +25,14 @@ public class WebConfig implements WebMvcConfigurer {
     // TODO #1: `LocaleResolver` 설정
     @Bean
     public LocaleResolver localeResolver() {
-        return new FixedLocaleResolver(Locale.KOREAN);
+        // Locale.KOREAN == new Locale("ko")
+        // Locale 이 Fix 라서 에러남 -> not fixed (cookie | session) 을 써야 함
+        // return new FixedLocaleResolver(Locale.KOREAN);
+
+        CookieLocaleResolver clr = new CookieLocaleResolver();
+        clr.setCookieName("bbung");
+
+        return clr;
     }
 
     // TODO #2: `LocaleChangeInterceptor` 추가
@@ -34,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor());
+        registry.addInterceptor(new MeasuringInterceptor());
     }
 
 }

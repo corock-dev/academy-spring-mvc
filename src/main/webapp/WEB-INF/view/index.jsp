@@ -8,6 +8,11 @@
 </head>
 <body>
     <%-- TODO #5: locale을 참고하여 다국어가 지원되는 메세지 --%>
+    <%-- cf.
+        setLocale
+        setBundle
+        ...
+     --%>
     <h2><fmt:message key="greeting" /></h2>
 <%--    <h2><spring:message code="greeting" /></h2>--%>
     <br />
