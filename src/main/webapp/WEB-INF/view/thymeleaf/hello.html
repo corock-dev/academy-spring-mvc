@@ -8,5 +8,35 @@
 <body>
     <span th:text="${greeting}" /><br />
     <span th:text="#{greeting}" /><br />
+
+    <span th:text="'M<b>V</b>C'"></span><br>
+    <span th:utext="'M<b>V</b>C'"></span><br>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>In Stock</th>
+        </tr>
+        <tr th:each="prod : ${prods}">
+            <td th:text="${prod.name}">Onions</td>
+            <td th:text="${prod.price}">2.41</td>
+        </tr>
+    </table>
+
+    <span th:if="${#lists.size(list) > 2}">more than 2</span>
+    <span th:if="${#lists.size(list) == 2}">two</span>
+
+    <div th:switch="${user.role}">
+        <p th:case="'admin'">User is an administrator</p>
+        <p th:case="#{roles.manager}">User is a manager</p>
+        <p th:case="*">User is some other thing</p>
+    </div>
+
+    <div th:with="firstPer=${persons[0]}">
+        <p>
+            The name of the first person is <span th:text="${firstPer.name}">Julius Casesar</span>.
+        </p>
+    </div>
 </body>
 </html>
