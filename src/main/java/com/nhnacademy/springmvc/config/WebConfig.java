@@ -4,9 +4,11 @@ import com.nhnacademy.springmvc.controller.ControllerBase;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @EnableWebMvc
 @Configuration
@@ -27,5 +29,11 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addViewController("/user2/register").setViewName("userRegister");
         registry.addViewController("/post2/register").setViewName("postRegister");
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // LocaleChangeInterceptor: 스프링에서 기본적으로 제공해주는 인터셉터
+        registry.addInterceptor(new LocaleChangeInterceptor());
     }
 }
