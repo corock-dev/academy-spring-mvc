@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 // TODO #5: 파일 업로드 처리
 @Controller
 public class FileUploadController {
-    private static final String UPLOAD_DIR = "/Users/user/Downloads/";
+    private static final String UPLOAD_DIR = "/Users/corock/Downloads/Temp/";
 
     @PostMapping("/fileUpload")
     public String processUpload(@RequestParam("file") MultipartFile file,
