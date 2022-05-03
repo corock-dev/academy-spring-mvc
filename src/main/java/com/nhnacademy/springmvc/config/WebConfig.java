@@ -28,7 +28,10 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @ComponentScan(basePackageClasses = ControllerBase.class)
 // TODO #2: ApplicationContextAware, MessageSourceAware 인터페이스 구현 선언
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, MessageSourceAware {
+    // @Autowired 로 해도 되지만 ApplicationContextAware 로
     private ApplicationContext applicationContext;
+
+    // MessageSourceAware 도 마찬가지
     private MessageSource messageSource;
 
     // TODO #3: ApplicationContextAware, MessageSourceAware 인터페이스 구현 처리
