@@ -23,7 +23,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
 
         // /version1/xxx    ->    /version2/aaa/xxx
-        // FIXME: 이게 OCP?
         registry.addRedirectViewController("/ver1/xxx", "ver2/aaa/xxx");
+
+        registry.addViewController("/user2/register").setViewName("userRegister");
+        registry.addViewController("/post2/register").setViewName("postRegister");
     }
 }

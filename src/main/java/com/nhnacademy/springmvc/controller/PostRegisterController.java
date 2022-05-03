@@ -25,10 +25,10 @@ public class PostRegisterController {
         this.validator = validator;
     }
 
-    @GetMapping
-    public String userRegisterForm() {
-        return "postRegister";
-    }
+    // @GetMapping
+    // public String userRegisterForm() {
+    //     return "postRegister";
+    // }
 
     // TODO #2: `@Valid` 또는 `@Validated` annotation 적용
     @PostMapping

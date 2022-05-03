@@ -19,10 +19,10 @@ public class UserRegisterController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
-    public String userRegisterForm() {
-        return "userRegister";
-    }
+    // @GetMapping
+    // public String userRegisterForm() {
+    //     return "userRegister";
+    // }
 
     @PostMapping
     public ModelAndView registerUser(@ModelAttribute UserRegisterRequest userRequest) {
