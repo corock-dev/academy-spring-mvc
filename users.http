@@ -1,0 +1,9 @@
+POST http://localhost:8080/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": "CoRock",
+  "password": "0420",
+  "age": 20,
+  "name": "코락"
+}
