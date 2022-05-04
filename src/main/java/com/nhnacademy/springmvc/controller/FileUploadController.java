@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadController {
     @PostMapping("/fileUpload")
     public String processUpload(@RequestParam("file") MultipartFile file,
-                                // TODO #3 `@Value` 사용해서 properties에 설정한 파일 업로드 경로 사용
-                                @Value("...") String uploadDir,
+                                // TODO #3 `@Value` 사용해서 properties 에 설정한 파일 업로드 경로 사용
+                                @Value("${upload.dir}") String uploadDir,
                                 Model model) throws IOException {
         file.transferTo(Paths.get(uploadDir + file.getOriginalFilename()));
 
